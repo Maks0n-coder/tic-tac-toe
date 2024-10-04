@@ -1,0 +1,131 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: "OpenSans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  background: #fff;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 1024px;
+  width: 100%;
+  padding: 0 50px;
+  margin: 0 auto;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: 0.3s ease-in-out;
+}
+
+img {
+  max-width: 100%;
+}
+
+svg,
+path,
+rect,
+input,
+.btn {
+  transition: 0.2s ease-in-out;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.title {
+  margin: 0 auto;
+  max-width: 200px;
+  margin-bottom: 35px;
+  padding: 10px 0;
+  background-image: linear-gradient(to left, red, green);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.play-fild {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid black;
+}
+
+.cell {
+    grid-column: span 1;
+    text-align: center;
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    font-size: 90px;
+}
+
+.cell.block {
+    pointer-events: none
+}
+
+.start-game-two {
+    margin-bottom: 15px;
+}
+
+.btn-group {
+    display: flex;
+    flex-direction: column;
+}
+
+         
+.btn {
+    background-image: linear-gradient(to right, #2F7336 0%, #AA3A38  51%, #2F7336  100%);
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+  }
+
+  .btn:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+  }
+ 
