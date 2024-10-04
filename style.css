@@ -70,7 +70,6 @@ button {
 
 .title {
   margin: 0 auto;
-  max-width: 200px;
   margin-bottom: 35px;
   padding: 10px 0;
   background-image: linear-gradient(to left, red, green);
