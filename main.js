@@ -186,10 +186,19 @@ function finishWindow(text) {
 }
 
 function restartGame() {
-  startGameTwoBtn.style.display = "block";
+  const btnRestartGame = document.createElement('button')
+  btnRestartGame.classList.add('btn')
+  btnRestartGame.textContent = 'Сыграть ещё раз'
+  document.querySelector('.btn-group').append(btnRestartGame)
+  btnRestartGame.addEventListener('click', () => {
+    document.querySelector(".play-fild").remove();
+    location.reload()
+  })
+/*   startGameTwoBtn.style.display = "block";
   startGameCompBtn.style.display = "block";
-  document.querySelector(".play-fild").remove();
+  document.querySelector(".play-fild").remove(); */
 }
+
 
 function randomCell() {
   const cellAll = document.querySelectorAll(".empty");
