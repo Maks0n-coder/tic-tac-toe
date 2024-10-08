@@ -1,3 +1,5 @@
+import { modalWindow } from "./modalWindow.js";
+
 class Game {
   constructor(container, count) {
     this.container = container;
@@ -16,7 +18,7 @@ class Game {
     this.container.append(playFild);
   }
 
-    logicPeopleGame() {
+  logicPeopleGame() {
     const cellAll = document.querySelectorAll(".cell");
     cellAll.forEach((cell) => {
       this.count = 1;
@@ -25,14 +27,14 @@ class Game {
         if (this.count % 2 === 1) {
           cell.textContent = "O";
           cell.style.color = "red";
+          this.winer("Выйграли O", "O");
         } else {
           cell.textContent = "X";
           cell.style.color = "green";
+          this.winer("Выйграли X", "X");
         }
         cell.classList.add("block");
-        this.winer("Выйграли X", "X");
-        this.winer("Выйграли O", "O");
-        /* this.winer("Ничья", "Н"); */
+        this.winer("Ничья", null);
       });
     });
   }
@@ -55,10 +57,10 @@ class Game {
         this.winer("Выйграли X", "X");
       });
     });
-
   }
 
   winer(text, XO) {
+    let winXorO = false;
     const cellAll = document.querySelectorAll(".cell");
     if (
       cellAll[0].textContent === XO &&
@@ -66,6 +68,8 @@ class Game {
       cellAll[2].textContent === XO
     ) {
       finishWindow(text);
+      winXorO = true;
+      return;
     }
 
     if (
@@ -74,6 +78,8 @@ class Game {
       cellAll[6].textContent === XO
     ) {
       finishWindow(text);
+      winXorO = true;
+      return;
     }
 
     if (
@@ -82,6 +88,8 @@ class Game {
       cellAll[8].textContent === XO
     ) {
       finishWindow(text);
+      winXorO = true;
+      return;
     }
 
     if (
@@ -90,6 +98,8 @@ class Game {
       cellAll[8].textContent === XO
     ) {
       finishWindow(text);
+      winXorO = true;
+      return;
     }
 
     if (
@@ -98,6 +108,8 @@ class Game {
       cellAll[8].textContent === XO
     ) {
       finishWindow(text);
+      winXorO = true;
+      return;
     }
 
     if (
@@ -106,6 +118,8 @@ class Game {
       cellAll[6].textContent === XO
     ) {
       finishWindow(text);
+      winXorO = true;
+      return;
     }
 
     if (
@@ -114,22 +128,24 @@ class Game {
       cellAll[5].textContent === XO
     ) {
       finishWindow(text);
+      winXorO = true;
+      return;
     }
 
     if (
-        cellAll[1].textContent === XO &&
-        cellAll[4].textContent === XO &&
-        cellAll[7].textContent === XO
-      ) {
-        finishWindow(text);
-      }
-
-    const cellBlock = document.querySelectorAll(".block");
-    if (cellBlock.length === 9) {
-        confirm('Ничья')
-        restartGame()
+      cellAll[1].textContent === XO &&
+      cellAll[4].textContent === XO &&
+      cellAll[7].textContent === XO
+    ) {
+      finishWindow(text);
+      winXorO = true;
+      return;
     }
 
+    const cellBlock = document.querySelectorAll(".block");
+    if (winXorO === false && cellBlock.length === 9) {
+      finishWindow("Ничья");
+    }
   }
 }
 
@@ -150,12 +166,21 @@ startGameCompBtn.addEventListener("click", () => {
   startGameCompBtn.style.display = "none";
   game.createGame();
   game.logicCompGame();
-
 });
 
-function finishWindow (text) {
+function finishWindow(text) {
+  console.log(text);
+  switch (text) {
+    case "Выйграли X":
+      text = text.replace("Выйграли X", "Выйграли крестики");
+      break;
+    case "Выйграли O":
+      text = text.replace("Выйграли O", "Выйграли нолики");
+      break;
+  }
+
   setTimeout(() => {
-    confirm(text);
+    modalWindow(text);
     restartGame();
   }, 100);
 }
