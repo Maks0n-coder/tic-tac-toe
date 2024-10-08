@@ -189,6 +189,8 @@ function restartGame() {
   const btnRestartGame = document.createElement('button')
   btnRestartGame.classList.add('btn')
   btnRestartGame.textContent = 'Сыграть ещё раз'
+  const cellAll = document.querySelectorAll(".cell");
+  cellAll.forEach(cell => cell.classList.add("block"))
   document.querySelector('.btn-group').append(btnRestartGame)
   btnRestartGame.addEventListener('click', () => {
     document.querySelector(".play-fild").remove();
