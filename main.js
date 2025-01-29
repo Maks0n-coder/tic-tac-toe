@@ -24,17 +24,18 @@ class Game {
       this.count = 1;
       cell.addEventListener("click", () => {
         this.count++;
+        cell.classList.add("block");
         if (this.count % 2 === 1) {
           cell.textContent = "O";
           cell.style.color = "red";
           this.winer("Выйграли O", "O");
-        } else {
+        } else if (this.count % 2 === 0) {
           cell.textContent = "X";
           cell.style.color = "green";
           this.winer("Выйграли X", "X");
+        } else {
+          this.winer("Ничья", null);
         }
-        cell.classList.add("block");
-        this.winer("Ничья", null);
       });
     });
   }
@@ -67,8 +68,8 @@ class Game {
       cellAll[1].textContent === XO &&
       cellAll[2].textContent === XO
     ) {
-      finishWindow(text);
       winXorO = true;
+      finishWindow(text);
       return;
     }
 
@@ -77,8 +78,8 @@ class Game {
       cellAll[3].textContent === XO &&
       cellAll[6].textContent === XO
     ) {
-      finishWindow(text);
       winXorO = true;
+      finishWindow(text);
       return;
     }
 
@@ -87,8 +88,8 @@ class Game {
       cellAll[7].textContent === XO &&
       cellAll[8].textContent === XO
     ) {
-      finishWindow(text);
       winXorO = true;
+      finishWindow(text);
       return;
     }
 
@@ -97,8 +98,8 @@ class Game {
       cellAll[5].textContent === XO &&
       cellAll[8].textContent === XO
     ) {
-      finishWindow(text);
       winXorO = true;
+      finishWindow(text);
       return;
     }
 
@@ -107,8 +108,8 @@ class Game {
       cellAll[4].textContent === XO &&
       cellAll[8].textContent === XO
     ) {
-      finishWindow(text);
       winXorO = true;
+      finishWindow(text);
       return;
     }
 
@@ -117,8 +118,8 @@ class Game {
       cellAll[4].textContent === XO &&
       cellAll[6].textContent === XO
     ) {
-      finishWindow(text);
       winXorO = true;
+      finishWindow(text);
       return;
     }
 
@@ -127,8 +128,8 @@ class Game {
       cellAll[4].textContent === XO &&
       cellAll[5].textContent === XO
     ) {
-      finishWindow(text);
       winXorO = true;
+      finishWindow(text);
       return;
     }
 
@@ -137,8 +138,8 @@ class Game {
       cellAll[4].textContent === XO &&
       cellAll[7].textContent === XO
     ) {
-      finishWindow(text);
       winXorO = true;
+      finishWindow(text);
       return;
     }
 
@@ -169,7 +170,6 @@ startGameCompBtn.addEventListener("click", () => {
 });
 
 function finishWindow(text) {
-  console.log(text);
   switch (text) {
     case "Выйграли X":
       text = text.replace("Выйграли X", "Выйграли крестики");
@@ -186,25 +186,23 @@ function finishWindow(text) {
 }
 
 function restartGame() {
-  const btnRestartGame = document.createElement('button')
-  btnRestartGame.classList.add('btn')
-  btnRestartGame.textContent = 'Сыграть ещё раз'
+  const btnRestartGame = document.createElement("button");
+  btnRestartGame.classList.add("btn");
+  btnRestartGame.textContent = "Сыграть ещё раз";
   const cellAll = document.querySelectorAll(".cell");
-  cellAll.forEach(cell => cell.classList.add("block"))
-  document.querySelector('.btn-group').append(btnRestartGame)
-  btnRestartGame.addEventListener('click', () => {
+  cellAll.forEach((cell) => cell.classList.add("block"));
+  document.querySelector(".btn-group").append(btnRestartGame);
+  btnRestartGame.addEventListener("click", () => {
     document.querySelector(".play-fild").remove();
-    location.reload()
-  })
-/*   startGameTwoBtn.style.display = "block";
-  startGameCompBtn.style.display = "block";
-  document.querySelector(".play-fild").remove(); */
+    location.reload();
+  });
 }
-
 
 function randomCell() {
   const cellAll = document.querySelectorAll(".empty");
+  const cellAllBlock = document.querySelectorAll(".block");
   const randomCell = Math.floor(Math.random() * cellAll.length);
+  if (cellAllBlock.length === 9) return
   cellAll[randomCell].textContent = "O";
   cellAll[randomCell].style.color = "red";
   cellAll[randomCell].classList.add("block");
